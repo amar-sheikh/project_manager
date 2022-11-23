@@ -1,1 +1,1 @@
-# rails-projects-manager
+# Project Manager

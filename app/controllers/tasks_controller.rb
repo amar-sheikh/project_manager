@@ -16,7 +16,7 @@ class TasksController < ApplicationController
         format.html { redirect_to project_url(@project), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_back fallback_location: project_path(@project) }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

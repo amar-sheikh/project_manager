@@ -55,6 +55,9 @@
             </div>
 
             <p><%= task.description %></p>
+            <% if task.assigned_to? %>
+              <p>Assigned to: <%= User.find(task.assigned_to).email %></p>
+            <% end %>
           </div>
         </div>
       <% end %>

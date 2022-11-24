@@ -1,0 +1,10 @@
+<h1>New task</h1>
+
+<%= form_with(model: @task, url: project_tasks_path) do |form| %>
+  <%= render "form", task: @task, form: form %>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Back to tasks", project_tasks_path %>
+</div>

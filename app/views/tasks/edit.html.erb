@@ -1,11 +1,7 @@
-<h1>Editing task</h1>
-<%= form_with(model: @task, url: project_task_path(@task)) do |form| %>
+<%= link_to "Back", project_path(@project), class: 'btn btn-secondary mb-3' %>
+<div class="card card-body">
+  <h1>Editing task</h1>
+  <%= form_with(model: @task, url: project_task_path(@project, @task)) do |form| %>
   <%= render "form", task: @task, form: form %>
-<% end %>
-
-<br>
-
-<div>
-  <%= link_to "Show this task", [@project, @task] %> |
-  <%= link_to "Back to tasks", project_tasks_path %>
+  <% end %>
 </div>

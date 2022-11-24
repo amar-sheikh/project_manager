@@ -12,19 +12,19 @@
 
 <div>
   <%= form.label :name, style: "display: block" %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, class: 'form-control' %>
 </div>
 
 <div>
   <%= form.label :description, style: "display: block" %>
-  <%= form.text_area :description %>
+  <%= form.text_area :description, class: 'form-control' %>
 </div>
 
 <div>
   <%= form.label :assigned_to, style: "display: block" %>
-  <%= form.number_field :assigned_to %>
+  <%= form.number_field :assigned_to, class: 'form-control' %>
 </div>
 
 <div>
-  <%= form.submit %>
+  <%= form.submit class: 'btn btn-primary mt-3' %>
 </div>

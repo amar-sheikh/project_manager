@@ -1,0 +1,66 @@
+<%= link_to "Back", projects_path, class: 'btn btn-secondary mb-3' %>
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-3">
+      <h3 class="card-title"><%= @project.name %></h3>
+      <div>
+        <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-warning" %>
+        <%= link_to 'Delete', @project, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+    <p>
+      <%= @project.description %>
+    </p>
+    <hr>
+    <!-- add task form -->
+    <h6>Add task</h6>
+
+    <%= form_for([@project, @task]) do |f| %>
+      <% if @task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="input-group mb-2">
+        <%= f.text_field :name, placeholder: "Enter task name...", class: "form-control" %>
+        <div class="input-group-append">
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      </div>
+
+    <% end %>
+    <!-- end form -->
+
+    <!-- Tasks show -->
+    <% @project.tasks.each do |task| %>
+      <% if task.persisted? %>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title d-inline"><%= task.name %></h4>
+              </div>
+              <div>
+                <%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-dark btn-sm' %>
+                <%= link_to 'Delete', [task.project, task], class: 'btn btn-secondary btn-sm', data: { turbo_method: :delete, turbo_confirm: "are you sure to delete \'#{task.name}\' task?" } %>
+              </div>
+            </div>
+
+            <p><%= task.description %></p>
+            <% if task.assigned_to? %>
+              <p>Assigned to: <%= User.find(task.assigned_to).email %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

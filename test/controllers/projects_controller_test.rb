@@ -1,8 +1,11 @@
 require "test_helper"
 
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @project = projects(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -24,7 +27,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show project" do
-    get project_url(@project)
+    get project_url(Project.last)
     assert_response :success
   end
 

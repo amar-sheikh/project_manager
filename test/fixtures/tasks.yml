@@ -4,10 +4,8 @@ one:
   name: MyString
   description: MyText
   project: one
-  assigned_to: 1
 
 two:
   name: MyString
   description: MyText
   project: two
-  assigned_to: 1
